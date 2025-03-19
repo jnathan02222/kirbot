@@ -1,3 +1,6 @@
 node_modules
 .env
 dataset.txt
+dataset_processed.txt
+results
+logs
