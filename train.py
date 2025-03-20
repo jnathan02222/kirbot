@@ -6,13 +6,16 @@ print(f"Using device: {device}")
 
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 
-#Reverse lines
+def emptyMessage(msg):
+    return msg[msg.find(":")+1:].strip() == ''
+
+#Reverse lines and remove empty messages
 with open('dataset.txt', 'r', encoding='utf-8') as f:
     lines = f.readlines()
 lines.reverse()
+lines = [line for line in lines if not emptyMessage(line)]
 with open('dataset_processed.txt', 'w', encoding='utf-8') as f:
     f.writelines(lines)
-
 
 def load_dataset(train_path, tokenizer):
     train_dataset = TextDataset(
@@ -48,3 +51,8 @@ trainer = Trainer(
 
 trainer.train()
 trainer.save_model()
+
+#Improvement ideas
+    #Train from scratch on text messages, then fine tune on chat data
+    #Use larger model
+    #Group conversations together in dataset
