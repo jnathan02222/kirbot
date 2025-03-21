@@ -54,5 +54,5 @@ trainer.save_model()
 
 #Improvement ideas
     #Train from scratch on text messages, then fine tune on chat data
-    #Use larger model
+    #Use larger model (improved coherence but made personality less accurate)
     #Group conversations together in dataset
